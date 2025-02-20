@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block mycontent %}
+
+<!-- Hero Section -->
+<div class="container-fluid bg-dark text-white text-center py-5">
+    <h1 class="display-4 fw-bold">Welcome to Recipe Hub</h1>
+    <p class="lead">Discover, create, and share your favorite recipes with the world!</p>
+    <a href="{% url 'receipes' %}" class="btn btn-primary btn-lg mt-3">
+        <i class="bi bi-book"></i> View Recipes
+    </a>
+</div>
+
+<!-- Featured Recipes -->
+<div class="container mt-5">
+    <h2 class="text-center text-primary mb-4">Featured Recipes</h2>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for recipe in receipes|slice:":3" %}  <!-- Show only 3 featured recipes -->
+        <div class="col">
+            <div class="card shadow-sm h-100">
+                <img src="{{ recipe.receipe_image.url }}" class="card-img-top" alt="{{ recipe.receipe_name }}">
+                <div class="card-body">
+                    <h5 class="card-title text-primary">{{ recipe.receipe_name }}</h5>
+                    <p class="card-text">{{ recipe.receipe_description|truncatewords:15 }}</p>
+                    <a href="{% url 'recipe_detail' recipe.id %}" class="btn btn-outline-primary btn-sm">
+                        <i class="bi bi-eye"></i> View Details
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p class="text-center">No recipes available yet. Start adding your favorite dishes!</p>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Call to Action -->
+<div class="text-center mt-5">
+    <a href="{% url 'receipes' %}" class="btn btn-success btn-lg">
+        <i class="bi bi-plus-circle"></i> Add a Recipe
+    </a>
+</div>
+
+{% endblock %}

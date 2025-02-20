@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block mycontent %}
+<div class="container mt-5 d-flex justify-content-center">
+    <div class="card shadow-lg p-4" style="max-width: 500px; width: 100%; border-radius: 12px;">
+        <div class="card-body">
+            <h2 class="text-center mb-4 text-primary">Add a New Recipe</h2>
+
+            <form method="POST" enctype="multipart/form-data" method="post">
+                {% csrf_token %}
+
+                <!-- Recipe Name -->
+                <div class="mb-3">
+                    <label for="recipeName" class="form-label fw-bold">
+                        <i class="bi bi-card-text"></i> Receipe Name
+                    </label>
+                    <input required type="text" class="form-control" id="recipeName" name="receipe_name"
+                        placeholder="Enter recipe name" required>
+                </div>
+
+                <!-- Recipe Description -->
+                <div class="mb-3">
+                    <label for="recipeDescription" class="form-label fw-bold">
+                        <i class="bi bi-chat-left-text"></i> Receipe Description
+                    </label>
+                    <textarea class="form-control" id="recipeDescription" name="receipe_description"
+                        rows="4" placeholder="Write a short description..." required></textarea>
+                </div>
+
+                <!-- Recipe Image -->
+                <div class="mb-3">
+                    <label for="recipeImage" class="form-label fw-bold">
+                        <i class="bi bi-image"></i> Upload Recipe Image
+                    </label>
+                    <input type="file" class="form-control" id="recipeImage" name="receipe_image"
+                        accept="image/*">
+                </div>
+
+                <!-- Submit Button -->
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-primary btn-lg">
+                        <i class="bi bi-cloud-upload"></i> Add Recipe
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap Icons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block mycontent %}
+<div class="container mt-5">
+    <form method="POST" class="shadow-lg p-4 rounded" style="max-width: 400px; margin: auto;">
+        {% csrf_token %}
+
+        <!-- Display Messages (Errors or Alerts) -->
+        {% if messages %}
+        <div class="alert alert-danger" role="alert">
+            {% for message in messages %}
+            {{ message }}
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <h2 class="text-center text-primary mb-4">Login</h2>
+
+        <!-- Username -->
+        <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input name="username" type="text" class="form-control" id="username" required>
+        </div>
+
+        <!-- Password -->
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input name="password" type="password" class="form-control" id="password" required>
+        </div>
+
+        <!-- Register Redirect -->
+        <p class="text-center mt-2">
+            Don't have an account? <a href="{% url 'register' %}" class="text-primary">Register here</a>
+        </p>
+
+        <!-- Submit Button -->
+        <div class="d-grid">
+            <button type="submit" class="btn btn-primary btn-lg">Login</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

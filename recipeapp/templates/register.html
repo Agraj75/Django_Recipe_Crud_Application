@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block mycontent %}
+<div class="container mt-5">
+    <form method="POST" class="shadow-lg p-4 rounded" style="max-width: 500px; margin: auto;">
+        {% csrf_token %}
+
+        <!-- Display Success/Error Messages -->
+        {% if messages %}
+        <div class="alert alert-info" role="alert">
+            {% for message in messages %}
+            {{ message }}
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <h2 class="text-center text-primary mb-4">Register</h2>
+
+        <!-- First Name -->
+        <div class="mb-3">
+            <label for="firstName" class="form-label">First Name</label>
+            <input name="first_name" type="text" class="form-control" id="firstName" required>
+        </div>
+
+        <!-- Last Name -->
+        <div class="mb-3">
+            <label for="lastName" class="form-label">Last Name</label>
+            <input name="last_name" type="text" class="form-control" id="lastName" required>
+        </div>
+
+        <!-- Username -->
+        <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input name="username" type="text" class="form-control" id="username" required>
+        </div>
+
+        <!-- Password -->
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input name="password" type="password" class="form-control" id="password" required>
+        </div>
+
+        <!-- Terms & Conditions Checkbox -->
+        <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="terms" required>
+            <label class="form-check-label" for="terms">I agree to the terms & conditions</label>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="d-grid">
+            <button type="submit" class="btn btn-primary btn-lg">Register</button>
+        </div>
+    </form>
+</div>
+{% endblock %}
